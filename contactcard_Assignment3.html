@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Contact Card</title>
+    <script type="text/javascript" src='http://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('form').submit(function(){
+          var firstName = $('#first').val(),
+              lastName = $('#last').val(),
+              description = $('.desctext').val();
+          if(firstName==='' || lastName==='' || description===''){
+            return false;
+          }
+          else{
+            $('#card').append('<div class="cards"><h3>'+firstName+'&nbsp;'+lastName+'</h3><p>'+description+'</p></div>');
+              $('#first,#last,.desctext').val('');
+              $('#first').focus();
+              return false;
+          }
+        });
+
+        $(document).on('click', '.cards', function(){
+          $('h3, p').toggle();
+        });
+      });
+    </script>
+
+    <style type="text/css">
+      ul{
+        list-style-type: none;
+      }
+      form{
+        width: 40%;
+      }
+      .cards{
+        border: 1px solid black;
+        width: 200px;
+        height: 200px;
+      }
+      p{
+        display: none;
+      }
+    </style>
+
+  </head>
+  <body>
+    <form method="post">
+      <ul>
+        <li>First Name: <input id="first" type="text" name="First Name"></li>
+        <li>Last Name: <input id="last" type="text" name="Last Name"></li>
+      </ul>
+      <h2>Descriptions</h2>
+      <textarea class="desctext" name="description" rows="8" cols="40" placeholder="Enter description"></textarea>
+      <input class='add_user' type="submit" value="Add User">
+    </form>
+    <div id="card"></div>
+
+
+
+  </body>
+</html>
